@@ -1,5 +1,6 @@
 
 from selenium import webdriver
+import pyautogui
 import time
 from selenium.webdriver.common.action_chains import ActionChains
 
@@ -24,9 +25,14 @@ likes = driver.find_elements_by_xpath("//div[@class = 'tvfksri0 ozuftl9m']//div[
 actions = ActionChains(driver)
 print(len(likes))
 time.sleep(5)
+
+pyautogui.FAILSAFE = False
+
 for i in range(0, 5):
-    likesactions.move_to_element([i]).perform()
-    driver.execute_script("arguments[0].click();", likes[i])
-    time.sleep(2)
+  time.sleep(2)
+  pyautogui.press("like")
+  time.sleep(1)
+  driver.execute_script("arguments[0].click();", likes[i])
 
 driver.quit()
+
